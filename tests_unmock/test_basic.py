@@ -5,6 +5,8 @@ Things to note:
     - Mocks are stored locally if desired, but data is generated off-site and is semantically correct
     - Mocks can be chosen to be non-deterministic (imitating failure points, bad answers, etc)
     - Only required familiarity with call and points of interest, not necessarily the entire response
+    - No need to specify URLs, intercepts all calls and returns a "bad news" response silently if an API is not yet
+        mocked.
     - Trivial usage
 """
 

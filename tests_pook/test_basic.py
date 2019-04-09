@@ -5,6 +5,7 @@ Things to note:
     - Have to be familiar with the target API enough to write our own semantically correct mock
     - Have to be familiar with the reply status and specify logical headers
     - All fetched information is known and deterministic
+    - Need to specify exact URL to match (including query), raises exception if a request is not found
     - At time of testing: pook.off() was broken (hence final test)
 """
 
