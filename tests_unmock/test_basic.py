@@ -1,3 +1,13 @@
+"""
+Basic example showing a single request with `unmock`
+Things to note:
+    - Summarized with 2 calls - import and initialization
+    - Mocks are stored locally if desired, but data is generated off-site and is semantically correct
+    - Mocks can be chosen to be non-deterministic (imitating failure points, bad answers, etc)
+    - Only required familiarity with call and points of interest, not necessarily the entire response
+    - Trivial usage
+"""
+
 import requests
 import unmock
 
@@ -19,3 +29,8 @@ def test_unmock_missing():
     res = requests.get("http://www.i-forgot-to-set-my-env-variable.com/")
     content = res.json()
     assert content.get('badNews')
+
+def test_unmock_off():
+    unmock.reset()
+    res = requests.get("http://www.i-forgot-to-set-my-env-variable.com/")
+    assert res.status_code == 200  # Got valid response from target URL after shutting down unmock.

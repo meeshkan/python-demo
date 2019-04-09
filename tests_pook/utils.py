@@ -1,15 +1,10 @@
-"""
-Basic example showing a single request with `pook`
-"""
-
-import pytest
-import pook
-import pook.exceptions
-import requests
 import json
 
-### This had to be HAND BUILT from looking at the response scheme located at behance's API
-behance_projects_response = {
+
+## Definitions used in the mocks here
+# These had to be HAND BUILT from looking at the response scheme located at behance's API
+
+BEHANCE_PROJECTS_REPONSE = {
     "projects": [
         {
             'covers': {
@@ -111,35 +106,6 @@ behance_projects_response = {
     ]
 }
 
-behance_projects_response_str = json.dumps(behance_projects_response)
+BEHANCE_PROJECTS_REPONSE_STR = json.dumps(BEHANCE_PROJECTS_REPONSE)
 
-pook.on()
-# Query parameters have to be explictly written down; you can filter by Headers if needed, though.
-pook.get("https://www.behance.net/v2/projects?api_key=u_n_m_o_c_k_200").reply(200).headers(
-    {  # Headers also needed to be manually contstructed
-        "Content-Length": str(len(behance_projects_response_str)),
-        "Content-Type": "application/json; charset=utf-8",
-        "ETag": "W/\"5e5e-Skxf9ruz9l1grCAr8kIDbgRdcw8\"",
-        "Access-Control-Allow-Origin": "*",
-        "X-DNS-Prefetch-Control": "off",
-        "X-Frame-Options": "SAMEORIGIN",
-        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
-        "X-Download-Options": "noopen",
-        "X-Content-Type-Options": "nosniff",
-        "X-XSS-Protection": "1; mode=block",
-    }
-).json(behance_projects_response)
-
-
-def test_pook_once():
-    res = requests.get("https://www.behance.net/v2/projects?api_key=u_n_m_o_c_k_200")
-    assert res.status_code == 200  # Hard coded to succeed!
-    content = res.json()
-    assert content.get('projects')
-    assert content.get('projects')[0].get('id') == 1337
-    assert "json" in res.headers.get("Content-Type", "")
-
-# Pook raises an exception if no match was found
-def test_pook_missing():
-    with pytest.raises(pook.exceptions.PookNoMatches):
-        res = requests.get("https://www.example.com")
+BHENACE_PROJECTS_LENGTH = len(BEHANCE_PROJECTS_REPONSE_STR)
