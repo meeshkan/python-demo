@@ -20,6 +20,7 @@ elif TEST_MODE == "pook":
     def client():
         import pook  # Alternatively, one could use pook decorators, etc.
         pook.on()
+        # Still need to write this for every API call in the server or at least this test suite
         (pook.get("https://www.behance.net/v2/projects?api_key=u_n_m_o_c_k_200")
          .persist()
          .reply(200)
