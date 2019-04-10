@@ -8,7 +8,7 @@ Test files for either are locared in the matching directory - `tests_unmock` and
 `pytest tests_pook`
 2. unmock test suite:
 `pytest tests_unmock`
-2.a. unmock flag test:
+3. unmock flag test:
 `pytest tests_unmock/test_pytest_flag.py --unmock`
 
 ### Test files
