@@ -4,9 +4,9 @@ A demo for `unmock` in Python, comparing `unmock` to `pook`.
 Test files for either are locared in the matching directory - `tests_unmock` and `tests_pook`. Test files have identical naming to allow for easier comparison between functionality.
 
 ## Running
-1. pook test suite:
+1. pook test suite:  
 `pytest tests_pook`
-2. unmock test suite:
+2. unmock test suite:  
 `pytest tests_unmock`
 3. unmock flag test:
 `pytest tests_unmock/test_pytest_flag.py --unmock`
